@@ -3,7 +3,6 @@ module github.com/routebyintuition/cloverdb-client
 go 1.18
 
 require (
-	github.com/lensesio/tableprinter v0.0.0-20201125135848-89e81fc956e7
 	github.com/olekukonko/tablewriter v0.0.5
 	github.com/ostafen/clover v1.2.0
 	github.com/rs/zerolog v1.28.0
@@ -11,7 +10,6 @@ require (
 )
 
 require (
-	github.com/BurntSushi/toml v1.1.0 // indirect
 	github.com/cespare/xxhash v1.1.0 // indirect
 	github.com/cespare/xxhash/v2 v2.1.1 // indirect
 	github.com/cpuguy83/go-md2man/v2 v2.0.2 // indirect
@@ -35,5 +33,4 @@ require (
 	go.opencensus.io v0.22.5 // indirect
 	golang.org/x/net v0.0.0-20211015210444-4f30a5c0130f // indirect
 	golang.org/x/sys v0.0.0-20211019181941-9d821ace8654 // indirect
-	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
