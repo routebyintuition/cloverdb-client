@@ -206,3 +206,14 @@ HOST%>
 
 ```
 
+### JSON
+
+An alternative to the table view is JSON output which can be used via command line arguments as well as via an environmental variable:
+
+```bash
+
+HOST%> ./cloverdb-client --format json doc --collection data list
+{"Title":"title_information_solo1","Introduction":"1665095101229","Message":"4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865","_id":"0d8b0f35-7bc7-4e9b-b79c-d86df9395568"}
+{"Title":"title_information_solo2","Introduction":"1665095101230","Message":"1121cfccd5913f0a63fec40a6ffd44ea64f9dc135c66634ba001d10bcf4302a2","_id":"0fdb5967-d476-457c-9a28-0cdfc797f069"}
+
+HOST%>
