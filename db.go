@@ -2,34 +2,48 @@ package main
 
 import (
 	"errors"
+	"strconv"
 
 	"github.com/ostafen/clover"
-	"github.com/rs/zerolog/log"
 	"github.com/urfave/cli/v2"
 )
 
 func (ccli *CCLI) open(c *cli.Context) error {
+	data := [][]string{}
+	data = append(data, []string{"Database", "Status"})
 	valid, err := dirValid(c.String("dir"))
 	if err != nil {
+		data = append(data, []string{c.String("dir"), err.Error()})
+		ccli.output.Write(data)
+
 		return err
 	}
 
 	if !valid {
+		data = append(data, []string{c.String("dir"), "directory location is not valid"})
+		ccli.output.Write(data)
+
 		return errors.New("directory location not valid")
 	}
 
 	cdb, err := clover.Open(c.String("dir"))
 	if err != nil {
+		data = append(data, []string{c.String("dir"), err.Error()})
+		ccli.output.Write(data)
+
 		return err
 	}
 
-	log.Debug().Msg("attempting to list collections")
 	_, err = cdb.ListCollections()
 	if err != nil {
+		data = append(data, []string{c.String("dir"), err.Error()})
+		ccli.output.Write(data)
+
 		return err
 	}
 
-	log.Debug().Msg("success on opening database directory")
+	data = append(data, []string{c.String("dir"), "success"})
+	ccli.output.Write(data)
 
 	return nil
 }
@@ -54,7 +68,11 @@ func (ccli *CCLI) create(c *cli.Context) error {
 		return err
 	}
 
-	log.Debug().Int("collection count", len(listColl)).Msg("successfully created database")
+	data := [][]string{}
+	data = append(data, []string{"Database", "Collection Count", "Status"})
+	data = append(data, []string{c.String("dir"), strconv.Itoa(len(listColl)), "created"})
+
+	ccli.output.Write(data)
 
 	return nil
 }

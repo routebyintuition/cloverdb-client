@@ -4,15 +4,13 @@ import (
 	"log"
 	"os"
 
-	"github.com/olekukonko/tablewriter"
 	"github.com/ostafen/clover"
 )
 
 type CCLI struct {
-	cdb     *clover.DB
-	tr      *tablewriter.Table
-	output  OutputWriter
-	printer OutputPrinter
+	cdb *clover.DB
+	//tr      *tablewriter.Table
+	output OutputWriter
 }
 
 type OutputWriter interface {
@@ -25,7 +23,7 @@ type OutputPrinter interface {
 
 func main() {
 	ccli := &CCLI{
-		tr: tablewriter.NewWriter(os.Stdout),
+		//tr: tablewriter.NewWriter(os.Stdout),
 	}
 
 	app := ccli.getApp()
