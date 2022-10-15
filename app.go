@@ -10,10 +10,9 @@ func (ccli *CCLI) getApp() *cli.App {
 		Name:                 "CloverDB CLI",
 		Usage:                "clover [flags] [command] [subcommand]",
 		EnableBashCompletion: true,
-		// Before:               altsrc.InitInputSourceWithContext(flags, NewYamlSourceFromProfileFunc("profile")),
 		Before: func(c *cli.Context) error {
 			var err error
-			ccli.output, ccli.printer, err = setWriter(c)
+			ccli.output, err = setWriter(c)
 			return err
 		},
 		Flags: geRootFlags(),

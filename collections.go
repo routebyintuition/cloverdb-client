@@ -5,11 +5,11 @@ import (
 	"os"
 	"strconv"
 
-	"github.com/rs/zerolog/log"
 	"github.com/urfave/cli/v2"
 )
 
 func (ccli *CCLI) ListCollections(c *cli.Context) error {
+
 	collList, err := ccli.cdb.ListCollections()
 	if err != nil {
 		return err
@@ -90,8 +90,6 @@ func (ccli *CCLI) ImportCollection(c *cli.Context) error {
 
 	if _, err := os.Stat(path); errors.Is(err, os.ErrNotExist) {
 		data = append(data, []string{coll, path, "SOURCE DOES NOT EXIST"})
-		data = append(data, []string{"", "", ""})
-		data = append(data, []string{"", "", ""})
 		ccli.output.Write(data)
 
 		return err
@@ -122,8 +120,7 @@ func (ccli *CCLI) ExportCollection(c *cli.Context) error {
 	if err == nil {
 		data = append(data, []string{coll, path, "SUCCESS"})
 	} else {
-		data = append(data, []string{coll, path, "FAILURE"})
-		log.Error().Err(err).Msg("could not export collection")
+		return err
 	}
 
 	ccli.output.Write(data)

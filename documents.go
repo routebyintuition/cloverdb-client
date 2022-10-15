@@ -145,11 +145,6 @@ func (ccli *CCLI) Query(c *cli.Context) error {
 		count++
 	}
 
-	data := [][]string{}
-	data = append(data, []string{"Count", "Status"})
-	data = append(data, []string{strconv.Itoa(count), "success"})
-	ccli.output.Write(data)
-
 	return nil
 }
 
